@@ -3,3 +3,4 @@
 ## Dependencies
 
 ## Getting Started
++ `npm install -g foreman`
