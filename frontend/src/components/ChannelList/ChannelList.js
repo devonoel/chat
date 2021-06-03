@@ -8,11 +8,11 @@ function ChannelList() {
 
   return (
     <div className="ChannelList">
-      <h1>Channels</h1>
+      <h2>Channels</h2>
 
       <ul>
         {channels.map((channel, i) => (
-          <li key={i}>{channel.name}</li>
+          <li key={i}>#{channel.name}</li>
         ))}
       </ul>
     </div>

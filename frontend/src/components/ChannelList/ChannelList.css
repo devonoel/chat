@@ -1,3 +1,15 @@
 .ChannelList {
-  
+
+}
+
+.ChannelList ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.ChannelList li {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid black;
+  cursor: pointer;
 }
