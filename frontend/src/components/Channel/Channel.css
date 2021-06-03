@@ -12,11 +12,23 @@
 
 }
 
+.Channel-history ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.Channel-history li {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+}
+
 .Channel form {
   width: 100%;
   padding: 5px;
   display: grid;
-  grid-template-columns: 1fr 100px;
+  grid-template-columns: 100px 1fr 100px;
+  align-items: center;
 }
 
 .Channel input[type=text] {

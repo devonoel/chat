@@ -24,3 +24,19 @@ test('updates message state when typing in text input', () => {
   });
   expect(setState).toHaveBeenCalledWith("foo");
 });
+
+test('fetches channel messages', async () => {
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState');
+  useStateSpy.mockImplementation((init) => [init, setState]);
+
+  const fakeMessages = [{id: 1, body: 'test', channel_id: 1, created_at: '1970-01-01 00:00:00'}];
+  jest.spyOn(global, "fetch").mockImplementation(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(setState(fakeMessages))
+    })
+  );
+
+  await act(async () => { render(<Router><Channel name="example" /></Router>) });
+  expect(setState).toHaveBeenCalledWith(fakeMessages);
+});
