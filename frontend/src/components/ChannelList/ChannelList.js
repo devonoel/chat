@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
-import './ChannelList.css';
+import {Link} from "react-router-dom";
+import "./ChannelList.css";
 
 function ChannelList() {
   const [channels, setChannels] = useState([]);
@@ -12,7 +13,12 @@ function ChannelList() {
 
       <ul>
         {channels.map((channel, i) => (
-          <li key={i}>#{channel.name}</li>
+          <li key={i}>
+            <Link to={{
+              pathname: `/channels/${channel.id}`,
+              channelProps: {...channel}
+            }}>#{channel.name}</Link>
+          </li>
         ))}
       </ul>
     </div>
