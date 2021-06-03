@@ -7,12 +7,21 @@ class V1::ChannelMessagesController < ApplicationController
   end
 
   def create
-
+    @message = @channel.messages.new(message_params)
+    if @message.save
+      render json: { message: 'Message created' }
+    else
+      render json: { errors: @message.errors.full_messages }, status: :bad_request
+    end
   end
 
   private
 
   def find_channel
     @channel = Channel.find_by(id: params[:channel_id]) || not_found
+  end
+
+  def message_params
+    params.require(:message).permit(:body)
   end
 end
