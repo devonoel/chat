@@ -9,7 +9,7 @@ class V1::ChannelMessagesController < ApplicationController
   def create
     @message = @channel.messages.new(message_params)
     if @message.save
-      render json: { message: 'Message created' }
+      render json: @message.as_json
     else
       render json: { errors: @message.errors.full_messages }, status: :bad_request
     end

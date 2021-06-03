@@ -30,7 +30,7 @@ function Channel(props) {
         </ul>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form name="newmessage" onSubmit={handleSubmit}>
         <label htmlFor="message">Message:</label>
         <input name="message" id="message" type="text" value={message} onChange={handleChange} />
         <input type="submit" value="Send" />
@@ -44,21 +44,28 @@ function Channel(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(message);
+    let channelId = getChannelId();
+    fetch(`${process.env.REACT_APP_BACKEND_URL}v1/channels/${channelId}/messages`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({message: { body: message }})})
+    .then(res => res.json())
+    .then((result) => {
+      setMessages([...messages, result]);
+      setMessage("");
+    });
   }
 
   function fetchMessages() {
-    let channelId
-
-    if (props.match) {
-      channelId = props.match.params.id
-    } else {
-      channelId = -1
-    }
+    let channelId = getChannelId();
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}v1/channels/${channelId}/messages`)
       .then(res => res.json())
       .then((result) => setMessages(result));
+  }
+
+  function getChannelId() {
+    return (props.match ? props.match.params.id : -1)
   }
 }
 
