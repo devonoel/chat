@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Message.destroy_all
 Channel.destroy_all
-Channel.create!(name: 'general')
+g = Channel.create!(name: 'general')
 Channel.create!(name: 'random')
+Message.create!(channel: g, body: 'Welcome to the #general channel!')

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Channel, type: :model do
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }
+  it { should have_many(:messages) }
 
   describe '.alphabetic' do
     let!(:channel1) { FactoryBot.create(:channel, name: 'b') }
