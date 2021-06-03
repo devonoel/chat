@@ -1,0 +1,28 @@
+.Channel {
+  height: 90vh;
+  display: grid;
+  grid-template-rows: 100px 1fr 50px;
+}
+
+.Channel-heading {
+
+}
+
+.Channel-history {
+
+}
+
+.Channel form {
+  width: 100%;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr 100px;
+}
+
+.Channel input[type=text] {
+  height: 100%;
+}
+
+.Channel input[type=submit] {
+  height: 100%;
+}
